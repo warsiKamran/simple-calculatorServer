@@ -7,6 +7,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // bodyParser -> we can parse the http request.
 // urlencoded -> get access to the form data.
 
+//for normal-calculator
 app.get("/", function(req, res){
     res.sendFile(__dirname + "/index.html");
 });
@@ -22,6 +23,22 @@ app.post("/", function(req, res){
 
     console.log(result);
     res.send("sum of two numbers is " + result);
+});
+
+
+//for bmi-calculator
+app.get("/bmicalculator", function(req, res){
+    res.sendFile(__dirname + "/index.html");
+});
+
+app.post("/", function(req, res){
+
+    var weight = parseFloat(req.body.weight);
+    var height = parseFloat(req.body.height);
+
+    var result = weight/(height*height);
+
+    res.send("Your BMI is: " + result);
 });
 
 app.listen("3000", function(){
